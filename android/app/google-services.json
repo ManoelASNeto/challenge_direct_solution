@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694446942730",
+    "project_id": "challenge-direct-solution",
+    "storage_bucket": "challenge-direct-solution.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694446942730:android:cd9930accbdb3dec840df3",
+        "android_client_info": {
+          "package_name": "br.com.devamancio.challenge_direct_solution"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfOV-r_6hnZZLYER9oYmHjGLc3CSmT7Lc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
