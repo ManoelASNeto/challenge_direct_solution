@@ -1,4 +1,5 @@
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,12 +9,17 @@ abstract class AuthRemoteDatasource {
   Future<UserModel> login({required String email, required String password});
   Future<UserModel> register({required String email, required String password});
   Future<UserModel> loginWithFacebook();
+  Future<UserModel?> loginWithGoogle();
   Future<void> logout();
 }
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   final FirebaseAuth firebaseAuth;
-  AuthRemoteDatasourceImpl({required this.firebaseAuth});
+  final GoogleSignIn googleSignIn;
+  AuthRemoteDatasourceImpl(
+    this.googleSignIn, {
+    required this.firebaseAuth,
+  });
 
   @override
   Future<UserModel> getCurrentUser() {
@@ -71,6 +77,30 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
     } else {
       throw Exception('Facebook login failed: ${result.status}');
     }
+  }
+
+  @override
+  Future<UserModel?> loginWithGoogle() async {
+    final googleUser = await googleSignIn.signIn();
+    if (googleUser == null) return null;
+    final googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    final userCredential = await firebaseAuth.signInWithCredential(credential);
+    final user = userCredential.user;
+
+    if (user != null) {
+      return UserModel(
+        uid: user.uid,
+        name: user.displayName ?? '',
+        email: user.email ?? '',
+        photoUrl: user.photoURL,
+      );
+    }
+
+    return null;
   }
 
   @override

@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         GoogleAuthButton(
                           onPressed: () {
-                            //context.read<AuthCubit>().loginWithGoogle();
+                            context.read<AuthCubit>().loginWithGoogle();
                           },
                           style: AuthButtonStyle(buttonType: AuthButtonType.icon),
                         ),

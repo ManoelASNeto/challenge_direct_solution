@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:challenge_direct_solution/features/auth/domain/usecases/auth_usecase_login_with_google.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/user_entity.dart';
@@ -15,12 +16,14 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthUsecaseLogin usecaseLogin;
   final AuthUsecaseRegister usecaseRegister;
   final AuthUsecaseLoginWithFacebook usecaseLoginWithFacebook;
+  final AuthUsecaseLoginWithGoogle usecaseLoginWithGoogle;
   final AuthUsecaseLogout usecaseLogout;
   AuthCubit(
     this.getCurrentUser,
     this.usecaseLogin,
     this.usecaseRegister,
     this.usecaseLoginWithFacebook,
+    this.usecaseLoginWithGoogle,
     this.usecaseLogout,
   ) : super(AuthInitial());
 
@@ -65,6 +68,17 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthAuthenticated(user: user));
     } catch (error) {
       emit(AuthError(message: error.toString()));
+    }
+  }
+
+  Future<void> loginWithGoogle() async {
+    emit(AuthLoading());
+    try {
+      final user = await usecaseLoginWithGoogle.call();
+      emit(AuthAuthenticated(user: user));
+    } catch (error) {
+      emit(AuthError(message: error.toString()));
+      print(error.toString());
     }
   }
 
