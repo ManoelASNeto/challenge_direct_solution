@@ -14,27 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "694446942730-2qr97b7foqnvkvlhhb7ug04kkonc97qj.apps.googleusercontent.com",
+          "client_id": "694446942730-p0j941t428llrbto0com1csvei6hd7vk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.com.devamancio.challenge_direct_solution",
-            "certificate_hash": "ccefd54eba22d114e549083c49c621ecdbdc93b7"
-          }
-        },
-        {
-          "client_id": "694446942730-a7hdk4ud6smiedqv6mcomlmpvrotpccg.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.com.devamancio.challenge_direct_solution",
-            "certificate_hash": "be44b0c1f90a788039be67056fbd87f9b39e76fb"
-          }
-        },
-        {
-          "client_id": "694446942730-etjr7c14lk81tov464shf78aos4t9pis.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.com.devamancio.challenge_direct_solution",
-            "certificate_hash": "0c297c3e8856444cb80de1db2a6c7663cecc855d"
+            "certificate_hash": "be84b0ff590a7880e6f99c15bef61fe6ce79dbed"
           }
         },
         {
