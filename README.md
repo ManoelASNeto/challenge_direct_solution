@@ -4,6 +4,7 @@ Este projeto Flutter oferece uma solução robusta para autenticação de usuár
 📦 Estrutura do Projeto
 A organização do código segue a Clean Architecture, promovendo a separação de responsabilidades e a modularidade:
 
+```
 lib/
 ├── core/
 │   └── utils/                     
@@ -53,7 +54,8 @@ lib/
 │
 ├── firebase_options.dart           # Arquivo gerado com as configs do Firebase
 │
-└── main.dart            
+└── main.dart
+```          
 
 
 ## 🚀 Como Instalar o Flutter e Rodar o Projeto
