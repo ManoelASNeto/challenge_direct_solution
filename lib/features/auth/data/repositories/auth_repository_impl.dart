@@ -8,30 +8,43 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required this.authRemoteDatasource});
 
   @override
-  Future<UserEntity> getCurrentUser() {
-    return authRemoteDatasource.getCurrentUser().then((userModel) {
-      return UserEntity(email: userModel.email, password: userModel.password);
-    }).catchError((error) {
+  Future<UserEntity?> getCurrentUser() async {
+    try {
+      final userModel = await authRemoteDatasource.getCurrentUser();
+      return userModel.toEntity();
+    } catch (error) {
       throw Exception('Failed to get current user: $error');
-    });
+    }
   }
 
   @override
-  Future<UserEntity> login({required String email, required String password}) {
-    return authRemoteDatasource.login(email: email, password: password).then((userModel) {
-      return UserEntity(email: email, password: password);
-    }).catchError((error) {
+  Future<UserEntity> login({required String email, required String password}) async {
+    try {
+      final userModel = await authRemoteDatasource.login(email: email, password: password);
+      return userModel.toEntity();
+    } catch (error) {
       throw Exception('Login failed: $error');
-    });
+    }
   }
 
   @override
-  Future<UserEntity> register({required String email, required String password}) {
-    return authRemoteDatasource.register(email: email, password: password).then((userModel) {
-      return UserEntity(email: email, password: password);
-    }).catchError((error) {
+  Future<UserEntity> register({required String email, required String password}) async {
+    try {
+      final userModel = await authRemoteDatasource.register(email: email, password: password);
+      return userModel.toEntity();
+    } catch (error) {
       throw Exception('Registration failed: $error');
-    });
+    }
+  }
+
+  @override
+  Future<UserEntity> loginWithFacebook() async {
+    try {
+      final userModel = await authRemoteDatasource.loginWithFacebook();
+      return userModel.toEntity();
+    } catch (error) {
+      throw Exception('Facebook login failed: $error');
+    }
   }
 
   @override

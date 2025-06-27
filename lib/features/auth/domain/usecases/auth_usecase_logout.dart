@@ -5,7 +5,7 @@ class AuthUsecaseLogout {
 
   AuthUsecaseLogout({required this.authRepository});
 
-  Future<void> logout() async {
+  Future<void> call() async {
     try {
       return await authRepository.logout();
     } catch (error) {

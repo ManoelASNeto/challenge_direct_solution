@@ -6,7 +6,7 @@ class AuthUsecaseGetCurrentUser {
 
   AuthUsecaseGetCurrentUser({required this.authRepository});
 
-  Future<UserEntity> call() async {
+  Future<UserEntity?> call() async {
     try {
       return await authRepository.getCurrentUser();
     } catch (error) {
