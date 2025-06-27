@@ -1,5 +1,7 @@
+import 'package:challenge_direct_solution/features/auth/domain/usecases/auth_usecase_login_with_google.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'features/auth/data/datasources/auth_remote_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
@@ -16,9 +18,11 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // Firebase Auth
   sl.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
+  sl.registerSingleton<GoogleSignIn>(GoogleSignIn());
 
   sl.registerSingleton<AuthRemoteDatasource>(
     AuthRemoteDatasourceImpl(
+      sl<GoogleSignIn>(),
       firebaseAuth: sl(),
     ),
   );
@@ -55,8 +59,13 @@ Future<void> init() async {
     authRepository: sl(),
   ));
 
+  sl.registerSingleton(AuthUsecaseLoginWithGoogle(
+    authRepository: sl(),
+  ));
+
   sl.registerSingleton(
     AuthCubit(
+      sl(),
       sl(),
       sl(),
       sl(),

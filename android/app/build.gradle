@@ -17,15 +17,24 @@ android {
         versionName = "1.0"
     }
 
+    signingConfigs {
+    release {
+        storeFile = file("../keystore/release.jks")
+        storePassword = "Nika1622"
+        keyAlias = "minha-chave"
+        keyPassword = "Nika1622"
+    }
+}
+
     buildTypes {
          release {
-        minifyEnabled = true
-        shrinkResources = true
+        minifyEnabled = false
+        shrinkResources = false
         proguardFiles(
             getDefaultProguardFile("proguard-android-optimize.txt"),
             "proguard-rules.pro"
         )
-        signingConfig = signingConfigs.getByName("debug")
+        signingConfig = signingConfigs.getByName("release")
     }
     }
 
